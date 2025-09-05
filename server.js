@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // --- storage dir --- 
-const uploadDir =  path.join("/data", "uploads");
+const uploadDir = path.join(__dirname, "uploads");
 fs.mkdirSync(uploadDir, {recursive: true});
 
 // --- multer setup --- 
@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage});
 // --- sqlite setup ---
-const dbPath = path.join("/data", "database.db");
+const dbPath = path.join(__dirname, "database.db");
 const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => {
